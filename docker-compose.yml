@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  mcp-github:
+    image: node:18-alpine
+    container_name: mcp-github-server
+    working_dir: /app
+    command: >
+      sh -c "
+        npm install -g @modelcontextprotocol/server-github &&
+        npx @modelcontextprotocol/server-github
+      "
+    environment:
+      - GITHUB_PERSONAL_ACCESS_TOKEN=${GITHUB_TOKEN}
+      - GITHUB_API_URL=https://api.github.com
+    volumes:
+      - ./mcp-config:/app/config
+    ports:
+      - "3000:3000"
+    restart: unless-stopped
+    networks:
+      - mcp-network
+
+networks:
+  mcp-network:
+    driver: bridge 

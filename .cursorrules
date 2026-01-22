@@ -1,0 +1,28 @@
+# Cursor Rules - MCP GitHub Configuration (Docker)
+
+# Configuración para el MCP de GitHub usando Docker
+# Este archivo permite configurar el protocolo MCP para GitHub en Cursor
+
+# Configuración del MCP de GitHub con Docker
+mcp_servers:
+  github:
+    command: docker
+    args: ["run", "--rm", "-e", "GITHUB_PERSONAL_ACCESS_TOKEN=${GITHUB_TOKEN}", "node:18-alpine", "sh", "-c", "npm install -g @modelcontextprotocol/server-github && npx @modelcontextprotocol/server-github"]
+    env:
+      GITHUB_PERSONAL_ACCESS_TOKEN: "${GITHUB_TOKEN}"
+      GITHUB_API_URL: "https://api.github.com"
+
+# Alternativa usando docker-compose
+# mcp_servers:
+#   github:
+#     command: docker-compose
+#     args: ["up", "mcp-github"]
+#     env:
+#       GITHUB_TOKEN: "${GITHUB_TOKEN}"
+
+# Reglas adicionales para el proyecto
+- Usar Python para análisis de datos y machine learning
+- Seguir buenas prácticas de documentación
+- Mantener el código limpio y bien comentado
+- Usar Jupyter notebooks para análisis exploratorio
+- Preferir Docker para MCP por aislamiento y facilidad de gestión 
